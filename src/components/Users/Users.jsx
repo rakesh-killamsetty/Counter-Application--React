@@ -41,7 +41,7 @@ function Users() {
         url='https://www.w3schools.com/html/mov_bbb.mp4'
         width='100%'
         height='400px'
-        controls={true}></ReactPlayer>
+        controls={true}/>
         
       
       <h1>KANTARA 2</h1>

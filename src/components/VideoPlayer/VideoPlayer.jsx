@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 
 function VideoPlayer() {
+  // const [uniqueId, setUniqueId] = useState(0);
   const [comments,setComments] = useState([
     {
       uniqueId: 1,
@@ -9,7 +10,7 @@ function VideoPlayer() {
       comment: 'Great video! Really enjoyed the content.',      
 
     },{
-      uniqueId: 2,
+      uniqueId:  2,
       img: 'https://randomuser.me/api/portraits/women/2.jpg',
       name: 'Jane Smith',
       comment: 'Very informative and well presented.',  
@@ -21,6 +22,8 @@ function VideoPlayer() {
     }
   ]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [name, setName] = useState('');
+  const [comment, setComment] = useState('');
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   }
@@ -33,6 +36,19 @@ function VideoPlayer() {
       setComments(newComments);
     }
   }
+
+  const setNameForAddComment = (event) => {
+    setName(event.target.value);
+    
+  }
+const setCommentForAddComment = (event) => {
+    setComment(event.target.value);
+  }
+  const addComment = () => {
+    // setUniqueId(uniqueId + 1);
+    setComments([...comments, { uniqueId: comments.length + 1, img: 'https://randomuser.me/api/portraits/men/4.jpg', name: name, comment: comment }]);
+  }
+
   return (
     <div>
       <h1>Video Player</h1>
@@ -59,6 +75,11 @@ function VideoPlayer() {
           <button onClick={() => deleteElement(eachItem.uniqueId)}>Delete</button>
         </div>
       ))}
+
+      <input type="text" placeholder='name' onChange={setNameForAddComment}/>
+      <input type="text" placeholder='comment' onChange={setCommentForAddComment}/>
+      <button onClick={addComment}>Add Comment</button>
+
     </div>
   )
 }
