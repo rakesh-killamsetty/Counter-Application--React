@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Counter=()=> {
     const [count, setCount] = useState(0)
@@ -6,6 +6,9 @@ const Counter=()=> {
     const increment = () => setCount(c => c + 1)
     const decrement = () => setCount(c => c - 1)
 
+    useEffect(() => {
+        document.title = `Count: ${count}`
+    },[count])
     return (
         <div style={{ textAlign: 'center' ,backgroundColor: '#ffffff', height: '200px',width: '400px',borderRadius:'20px'}}>
             <h1 style={{ color: '#000000' }}>Counter</h1>

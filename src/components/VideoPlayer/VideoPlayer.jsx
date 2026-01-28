@@ -1,21 +1,21 @@
 import React,{useState} from 'react'
 
 function VideoPlayer() {
-  // const [uniqueId, setUniqueId] = useState(0);
+  const [uniqueId, setUniqueId] = useState(0);
   const [comments,setComments] = useState([
     {
-      uniqueId: 1,
+      uniqueId: uniqueId,
       img: 'https://randomuser.me/api/portraits/men/1.jpg',
       name: 'John Doe',
       comment: 'Great video! Really enjoyed the content.',      
 
     },{
-      uniqueId:  2,
+      uniqueId: uniqueId + 1,
       img: 'https://randomuser.me/api/portraits/women/2.jpg',
       name: 'Jane Smith',
       comment: 'Very informative and well presented.',  
     },{
-      uniqueId: 3,
+      uniqueId: uniqueId + 2,
       img: 'https://randomuser.me/api/portraits/men/3.jpg',
       name: 'Mike Johnson',
       comment: 'I learned a lot from this video. Thanks for sharing!',
@@ -46,8 +46,18 @@ const setCommentForAddComment = (event) => {
   }
   const addComment = () => {
     // setUniqueId(uniqueId + 1);
-    setComments([...comments, { uniqueId: comments.length + 1, img: 'https://randomuser.me/api/portraits/men/4.jpg', name: name, comment: comment }]);
+    setComments([...comments, { uniqueId: uniqueId, img: 'https://randomuser.me/api/portraits/men/4.jpg', name: name, comment: comment }]);
   }
+
+  const updateElement = (uniqueId) => {
+    const newComments = comments[uniqueId]
+    const updatedCommentValue=prompt("Enter the updated comment:");
+    console.log("Updated Comment Value: ",updatedCommentValue);
+    comments[uniqueId].comment=updatedCommentValue;
+    setComments([...comments]);
+
+  }
+
 
   return (
     <div>
@@ -73,12 +83,15 @@ const setCommentForAddComment = (event) => {
           <h3>{eachItem.name}</h3>
           <p>{eachItem.comment}</p>
           <button onClick={() => deleteElement(eachItem.uniqueId)}>Delete</button>
+          <button onClick={()=> updateElement(eachItem.uniqueId)}>Update</button>
         </div>
       ))}
 
       <input type="text" placeholder='name' onChange={setNameForAddComment}/>
       <input type="text" placeholder='comment' onChange={setCommentForAddComment}/>
       <button onClick={addComment}>Add Comment</button>
+
+      
 
     </div>
   )

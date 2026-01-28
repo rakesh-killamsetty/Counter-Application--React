@@ -38,7 +38,7 @@ function Users() {
     <div>
       <h1>Users Management</h1>
       <ReactPlayer 
-        url='https://www.w3schools.com/html/mov_bbb.mp4'
+        src='https://www.w3schools.com/html/mov_bbb.mp4'
         width='100%'
         height='400px'
         controls={true}/>
